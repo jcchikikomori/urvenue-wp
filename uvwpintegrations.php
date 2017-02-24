@@ -3,7 +3,7 @@
  * @package uvwpintegrations
  */
 /*
-Plugin Name: uvwpintegrations
+Plugin Name: UrVenue
 Plugin URI: http://urvenue.com/
 Description: UrVenue Wordpress plugin.
 Version: 0.1
