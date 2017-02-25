@@ -3,7 +3,7 @@
 		<li class="uv_theaders t_Tickets">
 			<div class="uv_wrap uv-clearfix">
 				<div class="uv_col">Table</div>
-				<div class="uv_col">Quantity</div>
+				<div class="uv_col">Guests</div>
 				<div class="uv_col">Price</div>
 				<div class="uv_col">Terms</div>
 				<div class="uv_col"></div>

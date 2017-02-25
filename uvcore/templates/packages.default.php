@@ -53,4 +53,6 @@
 	<?php } else{ ?>
 		<h3 class="uv-nocontmsg"><?=$uvpkserror;?></h3>
 	<?php } ?>
+	
+	<a class="uv-pwby-cb" href="http://urvenue.com" target="_blank"></a>
 </div>

@@ -1,8 +1,10 @@
 <?php
+
+include_once($uv_corepath . "/libs/uvcore.lib.php");
 include_once($uv_corepath . "/libs/feedsinfo.lib.php");
 include_once($uv_corepath . "/libs/forms.lib.php");
 include_once($uv_corepath . "/libs/designtemplates.lib.php");
-
+include_once($uv_corepath . "/libs/program.lib.php");
 
 /*UVCALENDAR*/
 function uv_draw_calendar($uvfeedtoken, $uvstartdate = ""){
@@ -15,7 +17,7 @@ function uv_draw_calendar($uvfeedtoken, $uvstartdate = ""){
 	$uvcalendarmonth = uv_calendar_get_month($uvfeedtoken, $uvstartdate);
 	$uvddate = date("F Y", strtotime($uvstartdate));
 	
-	$uvloadmonthurl = $uvc_lib["loadcalurl"] . "?action=uvwp_loadcal&feedtoken={$uvfeedtoken}&fd={uvsdate}";
+	$uvloadmonthurl = $uvc_lib["loadcalurl"] . "&feedtoken={$uvfeedtoken}&fd={uvsdate}";
 	
 	$uvccalli = ($uvc_lib["defaultview"] == "calendar") ? "active" : "";
 	$uvclisli = ($uvc_lib["defaultview"] == "list") ? "active" : "";
@@ -731,6 +733,8 @@ function uv_get_eventlisthtml($uveventlisttemplate, $uvineventtemplate = "defaul
 	
 	$uveventitemtemplate = $uvlib_designtemplates[$uveventlisttemplate][$uvineventtemplate]["template"];
 	$uveventflyerpcode = $uvlib_designtemplates[$uveventlisttemplate][$uvineventtemplate]["flyerprioritycode"];
+	$uveventflyerpimksize = $uvlib_designtemplates[$uveventlisttemplate][$uvineventtemplate]["flyerimksize"];
+	$uveventddatephpformat = $uvlib_designtemplates[$uveventlisttemplate][$uvineventtemplate]["ddatephpformat"];
 	
 	$uvvenueevents = uv_get_feed("events", "uv" . $uvlib_global["uvvenueid"]);
 	$uvvenueeventshtml = "";
@@ -746,15 +750,18 @@ function uv_get_eventlisthtml($uveventlisttemplate, $uvineventtemplate = "defaul
 				$eventdate = $uvvenueevent["date"];
 				$eventflyers = $uvvenueevent["flyers"];
 				$eventfrecurring = $uvvenueevent["flyers_recurrent"];
+				$eventddate = date($uveventddatephpformat, strtotime($eventdate));
 				$eventlink = uv_get_event_link($uvvenueevent);
 				
+				$eventbuttons = uv_get_htmleventbuttons($uvvenueevent);
+					
 				$eventflyer = uv_get_flyer($eventflyers, $uveventflyerpcode);
 				$eventflyer = is_array($eventflyer) ? $eventflyer : uv_get_flyer($eventfrecurring, $uveventflyerpcode);
 				$eventflyerfolder = $eventflyer["flyer_folder"];
 				$eventflyerfile   = $eventflyer["flyer_file"];
-				$eventflyer = "$eventflyerfolder/800KT400/$eventflyerfile";
+				$eventflyer = "$eventflyerfolder/$uveventflyerpimksize/$eventflyerfile";
 				
-				$uveventitemhtml = str_replace(array("{eventlink}", "{eventflyer}"), array($eventlink, $eventflyer), $uveventitemtemplate);
+				$uveventitemhtml = str_replace(array("{eventlink}", "{eventflyer}", "{eventname}", "{eventddate}", "{eventlinkbtns}"), array($eventlink, $eventflyer, $eventname, $eventddate, $eventbuttons), $uveventitemtemplate);
 				
 				if($eventflyer)
 					$uvvenueeventshtml .= $uveventitemhtml;
@@ -762,6 +769,28 @@ function uv_get_eventlisthtml($uveventlisttemplate, $uvineventtemplate = "defaul
 	}
 	
 	return $uvvenueeventshtml;
+}
+function uv_get_htmleventbuttons($uveventinfo){
+	$eventticketcount = $uveventinfo["ticketcount"][0];
+	$eventlink = uv_get_event_link($uveventinfo);
+	
+	$eventbtnscont = 0;
+	if($eventticketcount["ticket"] > 0){
+		$eventdivbuttons = "<a class='uv-btn' href='$eventlink'>Tickets</a>";
+		$eventbtnscont++;
+	}
+	if($eventticketcount["table"] > 0){
+		$eventdivbuttons .= "<a class='uv-btn' href='$eventlink'>Tables</a>";
+		$eventbtnscont++;
+	}
+	if($eventbtnscont < 2){
+		$eventdivbuttons .= "<a class='uv-btn' href='$eventlink'>Details</a>";
+		$eventbtnscont++;
+	}
+		
+	$eventdivbuttons = "<div class='uv-eventbtns uv-eventbtns-$eventbtnscont uv-clearfix'>" .  $eventdivbuttons . "</div>";
+	
+	return $eventdivbuttons;
 }
 
 
@@ -1143,6 +1172,11 @@ function urcart_tablecreate($itmlayout){
 
 function urcart_ticketselect($itmmaxguests){
 	global $urcart_class;
+	
+	$tmpstr = strpos($urcart_class, 'ticket');
+	if($itmmaxguests>5 && $tmpstr!==false)
+		$itmmaxguests=5;
+	
 	if($itmmaxguests>0){
 		$srtselect.="<select class='form-control $urcart_class' data-urcart-tag='1'>";
 		for($pq=0;$pq<=$itmmaxguests;$pq++)

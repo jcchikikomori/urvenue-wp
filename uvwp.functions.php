@@ -12,6 +12,7 @@ function uvwp_register_settings(){
 	register_setting('urwpoptions-group', 'uvwp_veaid');
 	register_setting('urwpoptions-group', 'uvwp_eventurl');
 	register_setting('urwpoptions-group', 'uvwp_eventurlcustompage');
+	register_setting('urwpoptions-group', 'uvwp_mapreqid');
 }
 function uvwp_add_settings(){
 	$uvwp_hook_addop = add_options_page('UrVenue Settings', 'UrVenue Settings', 'manage_options', 'urvenue_settings', 'uvwp_plugin_options');
@@ -25,6 +26,7 @@ function uvwp_plugin_options(){
 	$uvwp_regveaid = get_option('uvwp_regveaid');
 	$uvwp_siteurl = get_option('home');
 	$uvwp_eventurlcustompage = get_option('uvwp_eventurlcustompage');
+	$uvwp_mapreqid = get_option('uvwp_mapreqid');
 	
 	if(($uvwp_veaid) and ($uvwp_veaid != $uvwp_regveaid)){
 		$uvwp_venueinfofeed = wp_remote_get("http://uvtix.com/api/v3/ve$uvwp_veaid/venues.pc8");
@@ -49,6 +51,7 @@ function uvwp_plugin_options(){
 				update_option('uvwp_venuelogo', $uvwp_venuelogo);
 				update_option('uvwp_wbcode', $uvwp_wbcode);
 				update_option('uvwp_uvserver', $uvwp_uvserver);
+				update_option('uvwp_mapreqid', $uvwp_mapreqid);
 				
 				
 				$uvwpvenueinfocard = "<div class='card'><h3>$uvwp_venuename</h3><p>$uvwp_venuemarketarea</p><img src='$uvwp_venuelogo' style='max-width: 400px;'></div>";
@@ -70,6 +73,7 @@ function uvwp_plugin_options(){
 		$uvwp_venuelogo = get_option('uvwp_venuelogo');
 		$uvwp_wbcode = get_option('uvwp_wbcode');
 		$uvwp_uvserver = get_option('uvwp_uvserver');
+		$uvwp_mapreqid = get_option('uvwp_mapreqid');
 		
 		$uvwpvenueinfocard = "<div class='card'><h3>$uvwp_venuename</h3><p>$uvwp_venuemarketarea</p><img src='$uvwp_venuelogo' style='max-width: 400px;'></div>";
 	}
@@ -84,6 +88,7 @@ function uvwp_plugin_options(){
 		update_option('uvwp_venuelogo', '');
 		update_option('uvwp_wbcode', '');
 		update_option('uvwp_uvserver', '');
+		update_option('uvwp_mapreqid', '');
 	}
 	
 	$uvwp_eventurl = get_option('uvwp_eventurl');
@@ -134,6 +139,19 @@ function uvwp_plugin_options(){
 						$uvwp_availablerestypes
 					</tbody>
 				</table>	
+				
+				<h2 class='title'>3D Map</h2>
+				<table class='form-table'>
+					<tdody>
+						<tr>
+							<th scope='row'>Map Request ID</th>
+							<td>
+								<input type='text' name='uvwp_mapreqid' value='$uvwp_mapreqid' />
+								<p class='description'>If you don't know your request id send a mail to: <a href='mailto:support@urvneue.com'>support@urvneue.com</a></p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 	");
 	submit_button();
 	echo("	</form>

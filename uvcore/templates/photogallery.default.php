@@ -39,7 +39,7 @@
 ?>
 	
 <?php if($uvgalleryhtml){ ?>
-	<div class='uv-integration'>
+	<div class='uv-integration uv-photogallery'>
 		<style>
 			.uv-mosaic-<?=$uvalbumdesigntemplate;?> .uv-mos-item:before{
 				padding-top: <?=$uvalbumthumprop;?>%;
@@ -51,6 +51,8 @@
 		<script>
 			uv_loadmoreitems["<?=$uvalbumintunicode;?>"] = <?=$uvloadmoreitemsscript;?>;
 		</script>
+		
+		<a class="uv-pwby-cb" href="http://urvenue.com" target="_blank"></a>
 	</div>
 <?php }else echo($uverrornogals);
 		

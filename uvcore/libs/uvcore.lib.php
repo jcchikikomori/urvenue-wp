@@ -1,55 +1,33 @@
 <?php
 
-$uvlib_cleanchars = array('ě' => 'e', 'Ě' => 'E', 'š' => 's', 'Š' => 'S', 'č' => 'c', 'Č' => 'C', 'ř' => 'r', 'Ř' => 'R', 'ž' => 'z', 'Ž' => 'Z', 'ý' => 'y', 'Ý' => 'Y', 'á' => 'a', 'Á' => 'A', 'í' => 'i', 'Í' => 'I', 'é' => 'e', 'É' => 'E', 'ú' => 'u', 'ů' => 'u', 'Ů' => 'U', 'ď' => 'd', 'Ď' => 'D', 'ť' => 't', 'Ť' => 'T', 'ň' => 'n', 'Ň' => 'N', 'ü' => 'u');
-
 $uv_coreurl = isset($uv_coreurl) ? $uv_coreurl : "";
 $uv_corepath = isset($uv_corepath) ? $uv_corepath : "";
-$uv_today = date("Y-m-d", current_time('timestamp'));
-
-if(get_option('uvwp_eventurl') == "custom")
-	$uveventlink = get_option('home') . "/" . get_option('uvwp_eventurlcustompage') . "/?id={eventid}&dt={seventdate}";
+$uv_today = isset($uv_today) ? $uv_today : date("Y-m-d");
 
 $uvlib_global = array();
-$uvlib_global["uvvenueid"] = get_option('uvwp_uvvenueid');
-$uvlib_global["veaid"] = get_option('uvwp_veaid');
-$uvlib_global["wbcode"] = get_option('uvwp_wbcode');
-$uvlib_global["uvserver"] = get_option('uvwp_uvserver');
-$uvlib_global["eventurl"] = isset($uveventlink) ? $uveventlink : get_option('uvwp_eventurl');
-$uvlib_global["sendformurl"] = admin_url('admin-ajax.php') . "?action=uvwp_sendresform";
-$uvlib_global["packagespopurl"] = admin_url('admin-ajax.php') . "?action=uvwp_packagespopurl";
+$uvlib_global["uvvenueid"] = isset($uv_opts["uvvenueid"]) ? $uv_opts["uvvenueid"] : "";
+$uvlib_global["veaid"] = isset($uv_opts["veaid"]) ? $uv_opts["veaid"] : "";
+$uvlib_global["wbcode"] = isset($uv_opts["wbcode"]) ? $uv_opts["wbcode"] : "";
+$uvlib_global["uvserver"] = isset($uv_opts["uvserver"]) ? $uv_opts["uvserver"] : "";
+$uvlib_global["eventurl"] = isset($uv_opts["eventurl"]) ? $uv_opts["eventurl"] : "/event/?id={eventid}&dt={seventdate}";
+$uvlib_global["sendformurl"] = isset($uv_opts["sendformurl"]) ? $uv_opts["sendformurl"] : "";
+$uvlib_global["packagespopurl"] = isset($uv_opts["packagespopurl"]) ? $uv_opts["packagespopurl"] : "";
 $uvlib_global["uvproresurl"] = "http://" . $uvlib_global["uvserver"] . "/apis/prores.pc8";
 $uvlib_global["uniqueintid"] = 0;
+$uvlib_global["map-reqid"] = isset($uv_opts["map-reqid"]) ? $uv_opts["map-reqid"] : "";
 
 $uvc_lib = array();
-$uvc_lib["defaultview"] = "calendar"; //available views: "calendar", "list"
-$uvc_lib["loadcalurl"] = admin_url('admin-ajax.php');
+$uvc_lib["defaultview"] = isset($uv_opts["uvc-defaultview"]) ? $uv_opts["uvc-defaultview"] : "calendar"; //available views: "calendar", "list"
+$uvc_lib["loadcalurl"] = isset($uv_opts["uvc-loadcalurl"]) ? $uv_opts["uvc-loadcalurl"] : "";
 
 $uvg_lib = array();
-$uvg_lib["pwidth"] = 800;
-$uvg_lib["pheight"] = 600;
-$uvg_lib["ninitalbums"] = 12;
-$uvg_lib["nalbumsgroups"] = 8;
-$uvg_lib["albumdatephpformat"] = "n/j/Y";
-$uvg_lib["albumdesigntemplate"] = "default";
-$uvg_lib["loadalbumurl"] = admin_url('admin-ajax.php') . "?action=uvwp_loadalbumpop";
-
-
-
-
-$uvlib_flyers_priority = array(
-	"default" => array(
-		"flyertype" => array("Flyer", "Secondary Flyer", "Head Shot", "Action Shot", "Promotional"),
-		"flyerratio" => array("Vertical", "Square", "Horizontal", "Banner")
-	),
-	"calendar" => array(
-		"flyertype" => array("Flyer", "Secondary Flyer", "Head Shot"),
-		"flyerratio" => array("Square", "Vertical", "Horizontal")
-	),
-	"slider" => array(
-		"flyertype" => array("Flyer", "Secondary Flyer"),
-		"flyerratio" => array("Horizontal", "Banner", "Square", "Vertical")
-	)
-);
+$uvg_lib["pwidth"] = isset($uv_opts["uvg-pwidth"]) ? $uv_opts["uvg-pwidth"] : 800;
+$uvg_lib["pheight"] = isset($uv_opts["uvg-pheight"]) ? $uv_opts["uvg-pheight"] : 600;
+$uvg_lib["ninitalbums"] = isset($uv_opts["uvg-ninitalbums"]) ? $uv_opts["uvg-ninitalbums"] : 12;
+$uvg_lib["nalbumsgroups"] = isset($uv_opts["uvg-nalbumsgroups"]) ? $uv_opts["uvg-nalbumsgroups"] : 8;
+$uvg_lib["albumdatephpformat"] = isset($uv_opts["uvg-albumdatephpformat"]) ? $uv_opts["uvg-albumdatephpformat"] : "n/j/Y";
+$uvg_lib["albumdesigntemplate"] = isset($uv_opts["uvg-albumdesigntemplate"]) ? $uv_opts["uvg-albumdesigntemplate"] : "default";
+$uvg_lib["loadalbumurl"] = isset($uv_opts["uvg-loadalbumurl"]) ? $uv_opts["uvg-loadalbumurl"] : "";
 
 
 

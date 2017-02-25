@@ -1,4 +1,4 @@
-=== uvwpintegrations ===
+=== UrVenue ===
 
 Contributors: urvenue
 
@@ -8,7 +8,7 @@ Requires at least: 4.6
 
 Tested up to: 4.7
 
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 License: GPLv2 or later
 
@@ -76,7 +76,13 @@ To get to the file it is necessary to follow the following steps:
 = 1.0 =
 * Initial release.
 
+= 1.0.1 =
+* Add UrVenue Map.
+
 == Upgrade Notice ==
 
 = 1.0 =
-* Just released
+* Just released.
+
+= 1.0.1 =
+* Add UrVenue Map.

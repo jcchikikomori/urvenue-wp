@@ -2,7 +2,7 @@
 	$uveventlisthtml = uv_get_eventlisthtml("eventslideritem");
 ?>
 
-<div class="uv-integration">
+<div class="uv-integration uv-eventslider">
 	<div class="uv-evslidercont">
 		<a class="uv-evsliderleft uvjs-evsliderprev" href="javascript:void(0);"><i class="fa fa-angle-left"></i></a>
 		<a class="uv-evsliderright uvjs-evslidernext" href="javascript:void(0);"><i class="fa fa-angle-right"></i></a>
@@ -27,4 +27,5 @@
 			jQuery('.uv-evslider').trigger('owl.next');
 		});
 	</script>
+	<!--<a class="uv-pwby-cb" href="http://urvenue.com" target="_blank"></a>-->
 </div>

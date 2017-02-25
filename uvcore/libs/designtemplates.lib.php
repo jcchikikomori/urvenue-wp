@@ -14,7 +14,16 @@ $uvlib_designtemplates = array(
 	"eventslideritem" => array(
 		"default" => array(
 			"flyerprioritycode" => "slider",
+			"flyerimksize" => "800KT400",
 			"template" => "<a href='{eventlink}'><div><img src='{eventflyer}'></div></a>"
+		)
+	),
+	"eventcarouselitem" => array(
+		"default" => array(
+			"flyerprioritycode" => "carousel",
+			"ddatephpformat" => "l n/j",
+			"flyerimksize" => "300KT300",
+			"template" => "<div><div class='uv-name'>{eventname}</div><div class='uv-ddate'>{eventddate}</div><a href='{eventlink}'><img src='{eventflyer}'></a>{eventlinkbtns}</div>"
 		)
 	)
 );

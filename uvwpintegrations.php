@@ -6,13 +6,13 @@
 Plugin Name: UrVenue
 Plugin URI: http://urvenue.com/
 Description: UrVenue Wordpress plugin.
-Version: 0.1
+Version: 1.0.1
 Author: UrVenue - aa
 Author URI: http://urvenue.com/
 */
 
 
-define('URVENUE_VERSION', '0.1');
+define('URVENUE_VERSION', '1.0.1');
 
 
 add_action('admin_menu', 'uvwp_add_settings');
@@ -28,10 +28,11 @@ add_action('wp_ajax_uvwp_packagespopurl', 'uvwp_packagespopurl');
 add_action('wp_ajax_nopriv_uvwp_loadalbumpop', 'uvwp_loadalbumpop');
 add_action('wp_ajax_uvwp_loadalbumpop', 'uvwp_loadalbumpop');
 
+/*UvCore Inclutions*/
+include_once(plugin_dir_path(__FILE__) . "uv.options.php");
+include_once($uv_corepath . "/uvcore.functions.php");
 
-$uv_coreurl = plugin_dir_url(__FILE__) . "uvcore";
-$uv_corepath = plugin_dir_path(__FILE__) . "uvcore";
-
+/*UvWP Inclutions*/
 include_once(plugin_dir_path(__FILE__) . "uvwp.lib.php");
 include_once(plugin_dir_path(__FILE__) . "uvwp.functions.php");
 require_once(plugin_dir_path(__FILE__) . "uvwp.shortcodes.php");

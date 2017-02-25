@@ -1,8 +1,5 @@
 <?php
 
-include_once($uv_corepath . "/libs/uvcore.lib.php");
-include_once($uv_corepath . "/uvcore.functions.php");
-
 // Caledar
 function shortcode_urvenue_calendar($atts, $content = null){
 	global $uvlib_global, $uv_corepath;
@@ -95,6 +92,37 @@ function shortcode_urvenue_event_slider($atts, $content = null){
 	return $content;
 }
 add_shortcode("urvenue_event_slider", "shortcode_urvenue_event_slider");
+
+// Carousel 
+function shortcode_urvenue_carousel($atts, $content = null){
+	global $uvlib_global, $uv_corepath;
+	
+	ob_start();
+	
+	include($uv_corepath . "/templates/eventcarousel.default.php");
+	
+	$content = ob_get_contents();
+	ob_end_clean();
+	
+	return $content;
+}
+add_shortcode("urvenue_carousel", "shortcode_urvenue_carousel");
+
+// 3d Map 
+function shortcode_urvenue_3dmap($atts, $content = null){
+	global $uvlib_global, $uv_corepath;
+	
+	ob_start();
+	
+	include($uv_corepath . "/templates/3dmap.default.php");
+	
+	$content = ob_get_contents();
+	ob_end_clean();
+	
+	return $content;
+}
+add_shortcode("urvenue_3dmap", "shortcode_urvenue_3dmap");
+
 
 
 
