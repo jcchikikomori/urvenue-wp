@@ -16,7 +16,7 @@ UrVenue is the leading Venue Management Software on the market in the nightclub 
 
 == Description ==
 
-UrVenue is the leading Venue Management Software on the market in the nightclub industry today. For this, UrVenue presents uvwpintegrations. If you are a client with Wordpress page, now is available a plugin for you, where you can added integrations with you account the UrVenue. Customize with just a few clicks.
+UrVenue is the industry leader in nightclub Venue Management Software.  We are now proud to announce our new Wordpress plugin for integrating events and media from the UrVenue engine.  If you are a UrVenue client with a Wordpress powered website, you now have the ability to utilize our new plugin. Customize with just a few clicks!
 
 **Prerequisites**
 
