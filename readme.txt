@@ -1,22 +1,17 @@
 === UrVenue ===
 
 Contributors: urvenue
-
 Tags: urvenue, nightclub, bar, management, venue, calendar, event, events
-
 Requires at least: 4.6
-
 Tested up to: 4.7
-
 Stable tag: 1.0.1
-
 License: GPLv2 or later
 
 UrVenue is the leading Venue Management Software on the market in the nightclub industry today.
 
 == Description ==
 
-UrVenue is the industry leader in nightclub Venue Management Software.  We are now proud to announce our new Wordpress plugin for integrating events and media from the UrVenue engine.  If you are a UrVenue client with a Wordpress powered website, you now have the ability to utilize our new plugin. Customize with just a few clicks!
+UrVenue is the leading Venue Management Software on the market in the nightclub industry today. For this, UrVenue presents uvwpintegrations. If you are a client with Wordpress page, now is available a plugin for you, where you can added integrations with you account the UrVenue. Customize with just a few clicks.
 
 **Prerequisites**
 
@@ -70,6 +65,18 @@ To get to the file it is necessary to follow the following steps:
 * In this file you can add all the css code you want. Once you have added the code click on Update File.
 
 **Warning:** Making changes to active plugins is not recommended. Only change the uvcustom.css or your changes can cause a fatal error, the plugin will be automatically deactivated.
+
+== Screenshots ==
+
+1. Calendar Events
+2. Calendar List Events
+3. Guest List
+4. Bottle Service
+5. Packages
+6. Photo Galleries
+7. Event Slider
+8. Carousel Events
+9. Map 3D
 
 == Changelog ==
 

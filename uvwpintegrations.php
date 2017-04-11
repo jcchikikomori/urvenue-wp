@@ -7,7 +7,7 @@ Plugin Name: UrVenue
 Plugin URI: http://urvenue.com/
 Description: UrVenue Wordpress plugin.
 Version: 1.0.1
-Author: UrVenue - aa
+Author: UrVenue
 Author URI: http://urvenue.com/
 */
 
